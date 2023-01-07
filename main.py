@@ -135,5 +135,11 @@ def get_weather_emoji(ID):
         return "🌥"  # broken clouds
 
 
+async def shutdown(dispatcher: Dispatcher):
+    await dispatcher.storage.close()
+    await dispatcher.storage.wait_closed()
+
+
 if __name__ == '__main__':
-    executor.start_polling(dp)
+    executor.start_polling(dp, on_shutdown=shutdown)
+
