@@ -19,8 +19,8 @@ dp = Dispatcher(bot)
 @dp.message_handler(commands=['start'])
 async def process_start_command(message: types.Message):
     await message.reply("""Привет!
-    Отправь мне своё местоположение!
-    Для этого открой 'Вложения -> Геопозиция' и нажми 'Отправить свою геопозицию'.""")
+Отправь мне своё местоположение для получения прогноза погоды!
+Для этого открой 'Вложения -> Геопозиция' и нажми 'Отправить свою геопозицию'.""")
 
 
 @dp.message_handler(content_types=['location'])
