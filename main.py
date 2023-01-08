@@ -33,6 +33,14 @@ async def process_start_command(message: types.Message):
 Для этого открой 'Вложения -> Геопозиция' и нажми 'Отправить свою геопозицию'.""")
 
 
+@dp.message_handler(state="*", commands=['help'])
+async def process_start_command(message: types.Message):
+    await message.reply("""Список команд:
+*Вложения -> Геопозиция -> Отправить свою геопозицию* - Возвращает текущую погоду для отправленной геопозиции;
+/set_location - устанавливает постоянное местоположение для команды /weather;
+/weather - более удобный вариант получения прогноза. Отправляет текущий прогноз погоды для заданного местоположения.""")
+
+
 @dp.message_handler(state="*", commands=["set_location"])
 async def define_constant_location(message: types.Message):
     await UserState.location.set()
