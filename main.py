@@ -7,18 +7,18 @@ from aiogram.utils import executor
 
 from aiogram.types import ReplyKeyboardMarkup, KeyboardButton
 
-from aiogram.contrib.fsm_storage.memory import MemoryStorage
+from aiogram.contrib.fsm_storage.redis import RedisStorage2
 from aiogram.dispatcher import FSMContext
 from aiogram.dispatcher.filters.state import State, StatesGroup
 
-from config.config import weather_api_config, bot_config
+from config.config import WEATHER_API_CONFIG, BOT_CONFIG
 
-weather_api_version = weather_api_config.VERSION
-weather_api_key = weather_api_config.KEY
-bot_token = bot_config.TOKEN
+weather_api_version = WEATHER_API_CONFIG.VERSION
+weather_api_key = WEATHER_API_CONFIG.KEY
+bot_token = BOT_CONFIG.TOKEN
 
 bot = Bot(bot_token)
-storage = MemoryStorage()
+storage = RedisStorage2(db=0)
 dp = Dispatcher(bot, storage=storage)
 
 
@@ -56,7 +56,7 @@ async def get_predefined_location_forecast(message: types.Message):
     if state is None:
         await message.reply("""Нельзя использовать сокращенную команду /weather,
 т.к. не было задано стандартное местоположение. Для того, чтобы задать местоположение, 
-используйте команду /set_location""")
+используйте команду /set_location.""")
         return
 
     lat, lon = ast.literal_eval(state)

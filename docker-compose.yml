@@ -1,0 +1,22 @@
+version: "3.9"
+services:
+
+  src:
+    container_name: telegram_weather_bot
+    build:
+      context: .
+      target: base
+    restart: always
+    depends_on:
+      - cache
+    networks:
+      - redis-net
+
+  cache:
+    container_name: redis_storage
+    image: redis:latest
+    networks:
+      - redis-net
+
+networks:
+  redis-net:

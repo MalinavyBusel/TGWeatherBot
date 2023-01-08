@@ -11,5 +11,5 @@ class WeatherApiConfig(BaseSettings):
     KEY = config("WEATHER_API_KEY", cast=str)
 
 
-bot_config = BotConfig()
-weather_api_config = WeatherApiConfig()
+BOT_CONFIG = BotConfig()
+WEATHER_API_CONFIG = WeatherApiConfig()
