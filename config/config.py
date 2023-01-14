@@ -9,7 +9,7 @@ class BotConfig(BaseSettings):
 
 class OpenWeatherMapApiConfig(BaseSettings):
     # simply the version of api
-    VERSION = config("WEATHER_API_VERSION", cast=str)
+    VERSION = "2.5"
     # the personal access key given after the registration
     KEY = config("WEATHER_API_KEY", cast=str)
 
